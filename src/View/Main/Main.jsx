@@ -15,7 +15,6 @@ const HeaderDiv = styled.div`
 
 
 
-
 export default function Main() {
 
   const items2 = mainCategory.map((data, index) => {
@@ -96,7 +95,7 @@ export default function Main() {
               로그인
             </div>    
             <div style={{paddingLeft:'20px',fontSize:'20px',fontWeight:'600'}}>
-              OOO 사전단속알림시스템
+              OOO 주정차단속 알림시스템
             </div>    
             <div style={{
               position: 'absolute',

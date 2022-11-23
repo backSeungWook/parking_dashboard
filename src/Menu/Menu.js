@@ -6,7 +6,8 @@ import Parking from '../View/ParkingSms/Parking'
 const parking = [
   {
     key:1,
-    value:'서비스 발송결과'
+    value:'서비스 발송결과',
+    children:Parking
   },
   {
     key:2,
