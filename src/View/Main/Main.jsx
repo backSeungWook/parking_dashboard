@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import './CSS/main.scss'
-import Parking from '../ParkingSms/Parking'
+import UserSetting from '../setting/UserSetting'
 import {mainCategory} from '../../Menu/Menu'
 import styled from "styled-components";
 // import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { UserOutlined ,SettingOutlined,LoginOutlined } from '@ant-design/icons';
+import { Layout, Menu ,Avatar} from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
 // STYLED 
@@ -16,6 +17,12 @@ const HeaderDiv = styled.div`
 
 
 export default function Main() {
+
+  const [modal, setModal] = useState(false)
+  const onModalReturn = (modal) =>{
+    console.log('111',modal)
+    setModal(modal)
+  }
 
   const items2 = mainCategory.map((data, index) => {
   
@@ -53,6 +60,7 @@ export default function Main() {
   return (
     <Layout hasSider>
       <Sider
+        width={220}
         style={{
           overflow: 'auto',
           height: '100vh',
@@ -90,18 +98,23 @@ export default function Main() {
           style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}
         >
           <HeaderDiv>
-            
-            <div style={{width:'150px'}}>
-              로그인
+            {
+              modal &&
+              <UserSetting modal={modal} returnModal={onModalReturn} />
+            }
+            <div style={{width:'150px',cursor: 'pointer'}} onClick={()=> setModal(true)} >
+              <Avatar style={{ backgroundColor: '#87d068' ,marginRight:'5px'}} icon={<UserOutlined />} />admin <SettingOutlined style={{marginLeft:'55px'}} />
             </div>    
             <div style={{paddingLeft:'20px',fontSize:'20px',fontWeight:'600'}}>
               OOO 주정차단속 알림시스템
             </div>    
             <div style={{
               position: 'absolute',
-              right: '10px'
+              right: '22px',
+              fontWeight:'600',
+              cursor: 'pointer'
             }}>
-              로그아웃
+              로그아웃<LoginOutlined style={{fontSize:'15px'}}/>
             </div>
           </HeaderDiv>
           
@@ -110,9 +123,7 @@ export default function Main() {
         <Content
           style={{
             // margin: '24px 16px 0',
-            margin: '0px 0px 0px 200px',
-            paddingLeft: '15px',
-            paddingTop:'10px',
+            margin: '0px 0px 0px 220px',
             overflow: 'initial',
           }}
         >
@@ -131,9 +142,10 @@ export default function Main() {
         <Footer
           style={{
             textAlign: 'center',
+            marginLeft:'220px'
           }}
         >
-          Ant Design ©2018 Created by Ant UED
+          copyright(c) 2009 IMCT.net all rights reserved.
         </Footer>
       </Layout>
 

@@ -1,6 +1,6 @@
 
 import Parking from '../View/ParkingSms/Parking'
-
+import ParkingStatistics from '../View/ParkingSms/ParkingStatistics'
 
 // 주정차문자알림서비스 메뉴
 const parking = [
@@ -11,14 +11,11 @@ const parking = [
   },
   {
     key:2,
-    value:'서비스 발송결과 통계'
+    value:'서비스 발송결과 통계',
+    children:ParkingStatistics
   },
   {
     key:3,
-    value:'전체 통계'
-  },
-  {
-    key:4,
     value:'전체 장비 데이터'
   },
 ]

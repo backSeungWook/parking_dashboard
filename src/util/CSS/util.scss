@@ -1,3 +1,47 @@
 .ant-pagination-options{
   display: none !important;
 }
+
+.ant-table-wrapper{
+  .ant-table-thead >tr>th {
+    font-size: 12px;
+    background:#001529;
+    color: #fff;
+  }
+
+  
+
+  
+  .ant-table-container table>thead>tr:first-child th{
+    &:first-child{
+      border-start-start-radius:0px
+    }
+    &:last-child{
+      border-start-end-radius: 0px ;
+    }
+  }
+  .ant-table-cell-scrollbar:not([rowspan]){
+    box-shadow: 0 1px 0 1px #001529;
+  }
+  .ant-table-tbody>tr>td{
+    font-size: 12px;
+    padding: 12px 16px;
+  }
+}
+
+.ant-card{
+  .ant-card-head-title{
+    padding: 12px 0;
+  }
+  .ant-card-body{
+    padding: 5px 24px 24px 24px;
+  }
+} 
+.table-header-text{
+  font-size: 12px;
+}
+
+.ant-layout .ant-layout-footer{
+  padding: 12px 50px;
+  font-size: 10px;
+}

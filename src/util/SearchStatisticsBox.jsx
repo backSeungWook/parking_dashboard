@@ -1,12 +1,12 @@
 import React from 'react'
 import dayjs from 'dayjs';
 import { DatePicker,Form,Button,Radio,Select,Input,Divider} from 'antd';
-const { Search } = Input;
+
 const { RangePicker } = DatePicker;
 
 
 
-export default function ParkingSearchBox() {
+export default function SearchStatisticsBox({item,title}) {
 
   const [form] = Form.useForm();
   // const [formLayout, setFormLayout] = useState('start')
@@ -16,7 +16,7 @@ export default function ParkingSearchBox() {
     let endDate = values.searchDate[1]
 
     startDate = `${startDate.$y}-${startDate.$M < 9 ? '0'+(startDate.$M+1):startDate.$M+1 }-${startDate.$D > 9? startDate.$D: '0'+startDate.$D }`
-    endDate = `${endDate.$y}-${endDate.$M < 9 ? '0'+(endDate.$M+1):endDate.$M+1 }-${endDate.$D > 9? endDate.$D: '0'+endDate.$D }`
+    endDate = `${endDate.$y}-${endDate.$M < 9 ? '0'+(endDate.$M+1):endDate.$M+1 }-${dayjs(endDate,"YYYY년 MM월DD일").daysInMonth() }`
     
     console.log('Success:',startDate,' ~ ',endDate);
     
@@ -25,15 +25,16 @@ export default function ParkingSearchBox() {
 
   return (
     <>
-    <Divider style={{background:'#fff',margin:'0px',paddingTop:'15px'}} orientation="left" >주정차 문자 알림 서비스 발송 조회</Divider>
+    <Divider style={{background:'#fff',margin:'0px',paddingTop:'15px'}} orientation="left" >{title}</Divider>
     
     <Form
       className='parkingsms-search-form'
       form={form}
       initialValues={{
-        searchGrade: 'START',
-        searchOption:'car_num',
-        searchDate:[dayjs(new Date().toLocaleDateString(), "YYYY년 MM월DD일").startOf("month"), dayjs(new Date().toLocaleDateString(), "YYYY년 MM월DD일")]
+        searchTerm: 'daily',
+        searchDate:[dayjs(new Date().toLocaleDateString(), "YYYY년 MM월DD일").startOf("month"), dayjs(new Date().toLocaleDateString(), "YYYY년 MM월DD일")],
+        division:'all'
+        
       }}
       // onValuesChange={onFormLayoutChange}
       name="basic"
@@ -57,12 +58,12 @@ export default function ParkingSearchBox() {
         //   },
         // ]}
       >
-        <RangePicker format="YYYY년 MM월DD일" />
+        <RangePicker format="YYYY년 MM월" picker="month" />
       </Form.Item>
 
       <Form.Item
-        label="단속선택"
-        name="searchGrade"
+        label="통계구분"
+        name="searchTerm"
         // rules={[
         //   {
         //     required: true,
@@ -71,22 +72,20 @@ export default function ParkingSearchBox() {
         // ]}
       >
         <Radio.Group >
-          <Radio.Button value="START">사전단속</Radio.Button>
-          <Radio.Button value="FINAL">단속확정</Radio.Button>
+          <Radio.Button value="daily">일별</Radio.Button>
+          <Radio.Button value="monthly">월별</Radio.Button>
         </Radio.Group>
       </Form.Item>
 
-
       <Form.Item
-        label="상세검색"
-        name="searchOption"
+        label="구분"
+        name="division"
       >
-        <Select style={{width:'130px'}} >
-          <Select.Option value="car_num">차량번호</Select.Option>
-          <Select.Option value="phone_no">휴대폰번호</Select.Option>
-          <Select.Option value="eq_cd">단속장비</Select.Option>
-          
-        </Select>
+        <Radio.Group >
+          <Radio.Button value="all">전 체</Radio.Button>
+          <Radio.Button value="center">고정형</Radio.Button>
+          <Radio.Button value="mov">이동형</Radio.Button>
+        </Radio.Group>
       </Form.Item>
 
       <Form.Item
@@ -94,15 +93,13 @@ export default function ParkingSearchBox() {
         name="searchText"
       >
         <Input.Group style={{display:'flex'}}>
-          <Input placeholder="Basic usage" />
+          {/* <Input placeholder="Basic usage" /> */}
           <Button type="primary" htmlType="submit">
-            Submit
+            검색결과조회
           </Button>
+          
         </Input.Group>
       </Form.Item>
-      
-     
-      <p style={{position:'absolute',top:185,fontSize:'12px',color:'red',fontWeight:'400'}}>* 휴대폰 검색시에는 정확한 전체번호를 입력. 예)01012344568</p>
       
       {/* <Form.Item
         wrapperCol={{
