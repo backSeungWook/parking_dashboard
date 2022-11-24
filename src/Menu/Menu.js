@@ -59,7 +59,38 @@ const member = [
   },
 ]
 
+// 연계모듈 메뉴
 const module =[{key:1,value:'CCTV연계 모듈',children:Parking}]
+
+// 관리자 메뉴
+const adminMenu =[
+  {
+    key:1,
+    value:'발송환경',
+    children:Parking
+  },
+  {
+    key:2,
+    value:'메시지 문구',
+    children:Parking
+  },
+  {
+    key:3,
+    value:'사용자',
+    children:Parking
+  },
+  {
+    key:4,
+    value:'지역 모듈',
+    children:Parking
+  },
+  {
+    key:5,
+    value:'사용자 기록',
+    children:Parking
+  },
+]
+
 
 const mainCategory = [
   {
@@ -78,6 +109,11 @@ const mainCategory = [
     value:'연계 모듈',
     category:module,
   },
+  {
+    key:4,
+    value:'관리자 메뉴',
+    category:adminMenu
+  }
 ]
 
 

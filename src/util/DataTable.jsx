@@ -6,6 +6,7 @@ export default function DataTable({columns,data,pageSize,position}) {
   return (
     <>
       <Table
+        
         columns={columns}
         dataSource={data}
         
@@ -15,7 +16,7 @@ export default function DataTable({columns,data,pageSize,position}) {
           
         }}
         scroll={{
-          y: position === 'none'? 'calc(100vh - 400px)': 'calc(100vh - 464px)',
+          y: position === 'none'? 'calc(100vh - 402px)': 'calc(100vh - 465px)',
         }}
       />
 

@@ -11,32 +11,38 @@ export default function Parking() {
     {
       title: '번호',
       dataIndex: 'num',
-      width: 80,
+      width: 70,
     },
     {
       title: '차량번호',
       dataIndex: 'carNum',
-      width: 150,
+      width: 110,
+      
     },
     {
       title: '휴대폰',
       dataIndex: 'phone',
+      width: 120,
     },
     {
       title: '초기단속',
       dataIndex: 'startDate',
+      width: 145,
     },
     {
       title: '단속구분',
       dataIndex: 'grade',
+      width: 95,
     },
     {
       title: '발송구분',
       dataIndex: 'sms',
+      width: 85,
     },
     {
       title: '단속장비',
       dataIndex: 'eqcd',
+      width: 150,
     },
     {
       title: '단속위치',
@@ -53,13 +59,13 @@ export default function Parking() {
     data.push({
       key: i,
       num: `${i}`,
-      carNum: `11로000${i}`,
+      carNum: `전북11로00${i}`,
       phone: `010-1234-3333`,
       startDate: `2022-11-11 20:20:59`,
       grade: `사전단속`,
       sms: `SMS`,
-      eqcd: `London, Park Lane no. ${i}`,
-      gps: `테스트지역:07001`,
+      eqcd: `BuCheon-Moving106`,
+      gps: `테스트지역 테스트지역:07001`,
       rslt: `전송성공`,
     });
   }
@@ -77,7 +83,7 @@ export default function Parking() {
           </div>
         } 
        bordered={false}>
-        <DataTable columns={columns} data={data} pageSize={20} position={'bottomCenter'}/>
+        <DataTable columns={columns} data={data} pageSize={25} position={'bottomCenter'}/>
       </Card>
       
     </div>

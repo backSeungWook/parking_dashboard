@@ -14,7 +14,7 @@ export default function UserSetting({modal,returnModal}) {
 
   const layout = {
     labelCol: {
-      span: 5,
+      span: 6,
     },
     wrapperCol: {
       span: 16,
@@ -94,7 +94,7 @@ export default function UserSetting({modal,returnModal}) {
           <Divider />
 
           <Form.Item
-            name="menu"
+            name="authority"
             label="메뉴권한 관리"
           >
             <Tag color="#3b5999">관리자 사용자</Tag>
@@ -105,7 +105,6 @@ export default function UserSetting({modal,returnModal}) {
             label="메뉴권한 관리"
           >
             <Tag color="success">주정차알림서비스 목록</Tag>
-            <Tag color="success">문자메시지발송</Tag>
             <Tag color="success">신청서비스 목록</Tag>
             <Tag color="success">CCTV연계모듈상태보기</Tag>
             <Tag color="success">관리자메뉴</Tag>

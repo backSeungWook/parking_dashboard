@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './CSS/main.scss'
 import UserSetting from '../setting/UserSetting'
 import {mainCategory} from '../../Menu/Menu'
+import MainContent from './MainContent'
 import styled from "styled-components";
 // import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { UserOutlined ,SettingOutlined,LoginOutlined } from '@ant-design/icons';
@@ -14,8 +15,6 @@ const HeaderDiv = styled.div`
   color:#fff;
 `
 
-
-
 export default function Main() {
 
   const [modal, setModal] = useState(false)
@@ -25,38 +24,26 @@ export default function Main() {
   }
 
   const items2 = mainCategory.map((data, index) => {
-  
-    return {
-      key: data.key,
-      // icon: React.createElement(icon),
-      label: `${data.value}`,
-      onClick:(e)=>{
-        setContent(data.category.filter(subData => e.key === subData.value)[0].children)
-        // console.log(data.category.filter(subData => e.key === subData.value)[0].children)
-  
-        // data.category.map((subData, j) => {
-        //   console.log(subData.children)
-        // })
-      },
-      children: data.category.map((subData, j) => {
-        
-        return {
-          key: `${subData.value}`,
-          label: `${subData.value}`,        
-        }
-        
-      }),
-    };
+    if(data.value !== '관리자 메뉴' ){
+      return {
+        key: data.key,
+        // icon: React.createElement(icon),
+        label: `${data.value}`,
+        onClick:(e)=>{
+          setContent(data.category.filter(subData => e.key === subData.value)[0].children)
+        },
+        children: data.category.map((subData, j) => {
+          return {
+            key: `${subData.value}`,
+            label: `${subData.value}`,        
+          }
+        }),
+      }
+    }
   });
 
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState(MainContent)
   
-
-  const menuEvent = (e)=>{
-    // setContent(Parking)
-    console.log('ss')
-  }
-
   return (
     <Layout hasSider>
       <Sider
@@ -83,7 +70,6 @@ export default function Main() {
             fontWeight:'600'
           }}
           items={items2}
-          onClick={(e)=>menuEvent(e)}
         />
       </Sider>
 
